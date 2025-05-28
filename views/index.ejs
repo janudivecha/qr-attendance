@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shared QR Attendance</title>
+</head>
+<body>
+  <h2>Scan this QR code to mark attendance</h2>
+  <img src="<%= qr %>" alt="Attendance QR Code" style="width:200px;">
+
+  <form method="POST" action="/mark" style="margin-top:20px;">
+    <input type="text" name="uniqueId" placeholder="Enter your Unique ID" required>
+    <button type="submit">Mark Attendance</button>
+  </form>
+
+  <p><a href="/register">Register new user</a></p>
+	<p><a href="/users">View Registered Users</a></p>
+
+</body>
+</html>
