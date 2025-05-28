@@ -11,9 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Connect to MongoDB (make sure mongod is running)
-mongoose.connect('mongodb://localhost:27017/qr_attendance', {
-  useNewUrlParser: true,
+mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true,
+  // other options if any...
 });
 
 app.get('/', async (req, res) => {
