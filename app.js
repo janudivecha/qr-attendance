@@ -9,16 +9,22 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
-
+require('dotenv').config();
 // Connect to MongoDB (make sure mongod is running)
+mongoose.connect('mongodb://localhost:27017/qr_attendance', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const mongoose = require('mongoose');
+
+const MONGO_URI = process.env.MONGO_URI;
+
 mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true,
-  // other options if any...
 });
-
 app.get('/', async (req, res) => {
   // Generate single shared QR code data URI for fixed string
-  const attendanceUrl = 'http://localhost:3000/mark-attendance'; 
+  const attendanceUrl = 'http://172.16.0.211:3000/mark-attendance'; 
 const qr = await QRCode.toDataURL(attendanceUrl);
 
   res.render('index', { qr });
@@ -33,7 +39,7 @@ app.get('/users', async (req, res) => {
   }
 });
 app.get('/', async (req, res) => {
-  const attendanceUrl = 'http://localhost:3000/mark-attendance';  // Replace with your server IP or domain
+  const attendanceUrl = 'http://172.16.0.211:3000/mark-attendance';  // Replace with your server IP or domain
   const qr = await QRCode.toDataURL(attendanceUrl);
   res.render('index', { qr });
 });
