@@ -49,6 +49,17 @@ app.post('/scan', async (req, res) => {
 
   res.redirect('/');
 });
+app.post('/mark', (req, res) => {
+  const uniqueId = req.body.uniqueId;  // Make sure body-parser is enabled
+
+  // Your logic to mark attendance with uniqueId, for example:
+  // 1. Check if user exists
+  // 2. Mark attendance in DB
+
+  console.log('Attendance marked for user:', uniqueId);
+
+  res.send('Attendance marked for ' + uniqueId);
+});
 
 // Start server
 app.listen(PORT, () => {
