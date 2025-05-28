@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
   res.render('index', { qr: qr });
 });
 
+app.get('/register', (req, res) => {
+  res.render('register');
+});
 
 app.post('/scan', async (req, res) => {
   const { qrData } = req.body;
