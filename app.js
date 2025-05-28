@@ -32,6 +32,18 @@ app.get('/', (req, res) => {
 
   res.render('index', { qr: qr });
 });
+app.use(express.urlencoded({ extended: true })); // Middleware to parse form data
+
+app.post('/register', (req, res) => {
+  const { username, password } = req.body;
+  
+  // TODO: Add your logic to save user in DB here
+  
+  console.log('Register data:', username, password);
+  
+  // After processing, redirect or send response
+  res.send('User registered successfully');
+});
 
 app.get('/register', (req, res) => {
   res.render('register');
