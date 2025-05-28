@@ -48,6 +48,21 @@ app.post('/register', (req, res) => {
 app.get('/register', (req, res) => {
   res.render('register');
 });
+app.get('/users', async (req, res) => {
+  try {
+    // Example: fetch users from your database
+    const users = await User.find();  // assuming you have a User model
+    
+    // Render a page or send JSON
+    res.render('users', { users });  // if you have a 'users.ejs' view
+    
+    // OR send JSON:
+    // res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
 
 app.post('/scan', async (req, res) => {
   const { qrData } = req.body;
