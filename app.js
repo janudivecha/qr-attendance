@@ -25,10 +25,13 @@ app.set('views', path.join(__dirname, 'views'));
 const User = require('./models/User');
 
 // Routes
-app.get('/', async (req, res) => {
-  const users = await User.find();
-  res.render('index', { users });
+app.get('/', (req, res) => {
+  // generate or get your QR code data URI here, or set it null if not generated yet
+  const qr = null; // or actual qr code data URI string
+
+  res.render('index', { qr: qr });
 });
+
 
 app.post('/scan', async (req, res) => {
   const { qrData } = req.body;
